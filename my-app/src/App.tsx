@@ -1,7 +1,7 @@
 import React from "react";
-//import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import "./App.css";
-//import Dashboard from "./pages/Dashboard";
+import Dashboard from "./components/pages/Dashboard";
 
 function App() {
   return (
@@ -18,15 +18,10 @@ function App() {
           </ul>
         </nav>
 
-        <Switch>
-          <Route path="/dashboard">
-            <Dashboard />
-          </Route>
-          <Route path="/">
-            <h1>Welcome to My App</h1>
-            {/* 既存のホームページコンテンツ */}
-          </Route>
-        </Switch>
+        <Routes>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/" element={<h1>Welcome to My App</h1>} />
+        </Routes>
       </div>
     </Router>
   );

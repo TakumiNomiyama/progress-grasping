@@ -1,9 +1,11 @@
 import React from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Progress } from "../ui/progress";
 import { Gift } from "lucide-react";
 
-export function DailyReward({ tasks }) {
+import { Task } from "../../types/task"; // Import the 'Task' type from the appropriate module
+
+export function DailyReward({ tasks }: { tasks: Task[] }): JSX.Element {
   const completedTasksCount = tasks.filter((task) => task.completed).length;
   const totalTasksCount = tasks.length;
   const completionPercentage = (completedTasksCount / totalTasksCount) * 100;

@@ -31,15 +31,20 @@ let journalEntries = [
   },
 ];
 
-export function getTasks() {
-  return tasks;
-}
+// dashboardData.ts
+export const getTasks = (): Task[] => {
+  return [
+    { id: 1, title: "Task 1", completed: false, progress: 20 },
+    { id: 2, title: "Task 2", completed: true, progress: 100 },
+    // 他のタスク
+  ];
+};
 
 export function getJournalEntries() {
   return journalEntries;
 }
 
-export function updateTask(taskId, updates) {
+export function updateTask(taskId: number, updates: any) {
   const taskIndex = tasks.findIndex((task) => task.id === taskId);
   if (taskIndex !== -1) {
     tasks[taskIndex] = { ...tasks[taskIndex], ...updates };
@@ -48,7 +53,7 @@ export function updateTask(taskId, updates) {
   return null;
 }
 
-export function addTask(newTask) {
+export function addTask(newTask: any) {
   const task = {
     id: tasks.length + 1,
     ...newTask,
@@ -59,7 +64,7 @@ export function addTask(newTask) {
   return task;
 }
 
-export function addJournalEntry(newEntry) {
+export function addJournalEntry(newEntry: any) {
   const entry = {
     id: journalEntries.length + 1,
     date: new Date().toISOString().split("T")[0],
@@ -67,4 +72,15 @@ export function addJournalEntry(newEntry) {
   };
   journalEntries.push(entry);
   return entry;
+}
+
+// src/types/task.ts
+// dashboardData.ts
+export interface Task {
+  id: number;
+  title: string;
+  completed: boolean;
+  progress: number;
+
+  // 必要に応じて他のフィールドを追加
 }

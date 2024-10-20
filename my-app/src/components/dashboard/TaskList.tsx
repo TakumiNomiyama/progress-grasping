@@ -1,10 +1,18 @@
 import React from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Button } from "../ui/button";
+import { Progress } from "../ui/progress"; // Import the missing Progress component from the correct file path
 import { Plus } from "lucide-react";
 
-export function TaskList({ tasks, onTaskUpdate }) {
+import { Task } from "../../types/task"; // Import the missing Task type
+
+export function TaskList({
+  tasks,
+  onTaskUpdate,
+}: {
+  tasks: Task[];
+  onTaskUpdate: (id: string, updates: Partial<Task>) => void;
+}) {
   return (
     <Card className="bg-white border-green-200">
       <CardHeader>
@@ -19,7 +27,9 @@ export function TaskList({ tasks, onTaskUpdate }) {
                   type="checkbox"
                   checked={task.completed}
                   onChange={() =>
-                    onTaskUpdate(task.id, { completed: !task.completed })
+                    onTaskUpdate(task.id.toString(), {
+                      completed: !task.completed,
+                    })
                   }
                   className="mr-2 accent-green-600"
                   aria-label={`${task.title}を${
